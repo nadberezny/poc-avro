@@ -8,5 +8,12 @@ lazy val root = (project in file(".")).
       version      := "0.1.0-SNAPSHOT"
     )),
     name := "pocavro",
-    libraryDependencies += scalaTest % Test
+    resolvers += "confluent" at "http://packages.confluent.io/maven/",
+    libraryDependencies ++= { Seq(
+      scalaTest % Test,
+      kafkaClients,
+      kafkaSchemaRegistryClient,
+      kafkaAvroSerializer,
+      typeSafeConfig
+    )}
   )
